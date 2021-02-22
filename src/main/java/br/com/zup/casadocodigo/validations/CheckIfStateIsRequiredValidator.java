@@ -14,7 +14,7 @@ public class CheckIfStateIsRequiredValidator implements ConstraintValidator<Chec
     protected Class<?> domainClass;
     protected Class<?> stateClass;
     protected String country;
-    protected String state_id;
+    protected String state_id_alias;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -22,7 +22,7 @@ public class CheckIfStateIsRequiredValidator implements ConstraintValidator<Chec
     public void initialize(CheckIfStateIsRequired constraint) {
         stateClass = constraint.stateClass();
         country = constraint.country();
-        state_id = constraint.state_id_alias();
+        state_id_alias = constraint.state_id_alias();
     }
 
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
@@ -52,7 +52,7 @@ public class CheckIfStateIsRequiredValidator implements ConstraintValidator<Chec
     }
 
     public boolean isValid(Object obj) {
-        Query query = entityManager.createQuery("select 1 from " + stateClass.getName() + " where " + state_id + " = :state_id");
+        Query query = entityManager.createQuery("select 1 from " + stateClass.getName() + " where " + state_id_alias + " = :state_id");
         query.setParameter("state_id", obj);
         List<?> list = query.getResultList();
 
