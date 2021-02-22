@@ -1,10 +1,7 @@
 package br.com.zup.casadocodigo;
 
-import br.com.zup.casadocodigo.authors.Author;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.validation.Valid;
 
 @SpringBootTest
 class CasadocodigoApplicationTests {
